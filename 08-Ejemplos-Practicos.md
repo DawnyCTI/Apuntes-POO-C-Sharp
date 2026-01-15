@@ -293,12 +293,12 @@ public class Empleado : Persona, IReportable
     public decimal SalarioConBonos => CalcularSalarioTotal();
     
     public Empleado(string id, string nombre, string apellido, DateTime fechaNacimiento,
-                    string departamento, decimal salario)
+                    string departamento, decimal salario, DateTime? fechaContratacion = null)
         : base(id, nombre, apellido, fechaNacimiento)
     {
         Departamento = departamento;
         SalarioBase = salario;
-        FechaContratacion = DateTime.Now;
+        FechaContratacion = fechaContratacion ?? DateTime.Now;
         proyectos = new List<string>();
     }
     
@@ -354,8 +354,9 @@ public class Gerente : Empleado
     public int TamañoEquipo => equipo.Count;
     
     public Gerente(string id, string nombre, string apellido, DateTime fechaNacimiento,
-                   string departamento, decimal salario, decimal bonoGerencial)
-        : base(id, nombre, apellido, fechaNacimiento, departamento, salario)
+                   string departamento, decimal salario, decimal bonoGerencial, 
+                   DateTime? fechaContratacion = null)
+        : base(id, nombre, apellido, fechaNacimiento, departamento, salario, fechaContratacion)
     {
         BonoGerencial = bonoGerencial;
         equipo = new List<Empleado>();

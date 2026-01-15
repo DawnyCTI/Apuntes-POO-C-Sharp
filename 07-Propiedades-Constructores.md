@@ -41,6 +41,10 @@ public class Producto
     
     public Producto(string codigo)
     {
+        if (string.IsNullOrWhiteSpace(codigo))
+        {
+            throw new ArgumentException("El código no puede estar vacío");
+        }
         Codigo = codigo;
         FechaCreacion = DateTime.Now;
     }
